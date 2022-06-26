@@ -3,13 +3,39 @@
 
 <section>
   <h1>Gyms</h1>
+  <% if (user) { %>
+    <h2>Add a Gym</h2>
+    <form action="/gyms" method="POST">
+      <label>
+        Name: 
+        <input type="text" name="name" autocomplete="off">
+      </label>
+      <label>
+        City: 
+        <input type="text" name="city" autocomplete="off">
+      </label>
+      <label>
+        State: 
+        <input type="text" name="state" autocomplete="off">
+      </label>
+      <label>
+        Category: 
+        <input type="text" name="category" autocomplete="off">
+      </label>
+      <label>
+        Offers group classes?
+        <input type="checkbox" name="groupClasses">
+      </label>
+      <button type="submit">Add Gym</button>
+    </form>
+  <% } %>
 	<ul>
   <% gyms.forEach(gym => { %>
     <li>Name: <%= gym.name %> </li>
     <li>City: <%= gym.city %> </li>
     <li>State: <%= gym.state %> </li>
     <li>Category: <%= gym.category %> </li>
-    <li>Group classes offered? <%= gym.groupClasses ? 'Yes' : 'No' %></li>
+    <li>Group classes: <%= gym.groupClasses ? 'Yes' : 'No' %></li>
     <%# [reviews] %> 
   <% }) %>
   </ul>

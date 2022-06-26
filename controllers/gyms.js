@@ -14,6 +14,20 @@ function index(req, res) {
   })
 }
 
+function create(req, res) {
+  req.body.author = req.user.profile._id
+  req.body.groupClasses = !!req.body.groupClasses
+  Gym.create(req.body)
+  .then(gym => {
+    res.redirect('/gyms')
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
+}
+
 export {
   index,
+  create,
 }
