@@ -1,0 +1,18 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Gyms</h1>
+	<ul>
+  <% gyms.forEach(gym => { %>
+    <li>Name: <%= gym.name %> </li>
+    <li>City: <%= gym.city %> </li>
+    <li>State: <%= gym.state %> </li>
+    <li>Category: <%= gym.category %> </li>
+    <li>Group classes offered? <%= gym.groupClasses ? 'Yes' : 'No' %></li>
+    <%# [reviews] %> 
+  <% }) %>
+  </ul>
+</section>
+
+<%- include('../partials/footer') %>
