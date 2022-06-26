@@ -14,6 +14,12 @@ function index(req, res) {
   })
 }
 
+function newGym(req, res) {
+  res.render('gyms/new', {
+    title: "Add Gym",
+  })
+}
+
 function create(req, res) {
   req.body.author = req.user.profile._id
   req.body.groupClasses = !!req.body.groupClasses
@@ -27,7 +33,19 @@ function create(req, res) {
   })
 }
 
+function show(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    res.render('gyms/show', {
+      title: `${gym.name}`,
+      gym
+    })
+  })
+}
+
 export {
   index,
+  newGym as new,
   create,
+  show,
 }

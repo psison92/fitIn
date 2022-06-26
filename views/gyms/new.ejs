@@ -1,0 +1,31 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>  
+  <h2>Add a Gym</h2>
+    <form action="/gyms" method="POST">
+      <label>
+        Name: 
+        <input type="text" name="name" autocomplete="off">
+      </label>
+      <label>
+        City: 
+        <input type="text" name="city" autocomplete="off">
+      </label>
+      <label>
+        State: 
+        <input type="text" name="state" autocomplete="off">
+      </label>
+      <label>
+        Category: 
+        <input type="text" name="category" autocomplete="off">
+      </label>
+      <label>
+        Offers group classes?
+        <input type="checkbox" name="groupClasses">
+      </label>
+      <button type="submit">Add Gym</button>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>
