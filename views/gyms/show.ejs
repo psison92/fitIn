@@ -3,13 +3,17 @@
 
 <section>
   <h1><%= title %> </h1>
+  <a href="/gyms">Back</a>
 	<ul>
     <li>City: <%= gym.city %> </li>
     <li>State: <%= gym.state %> </li>
     <li>Category: <%= gym.category %> </li>
     <li>Group classes: <%= gym.groupClasses ? 'Yes' : 'No' %></li>
-    <%# [reviews] %> 
   </ul>
+  <% if (gym.author.equals(user?.profile._id)) { %>
+    <a href="/gyms/<%= gym._id %>/edit">Edit Info</a>
+  <% } %>  
+  <%# [reviews] %> 
 </section>
 
 <%- include('../partials/footer') %>

@@ -1,0 +1,31 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>  
+  <h2>Edit Info</h2>
+    <form action="/gyms/<%= gym._id %>?_method=PUT" method="POST">
+      <label>
+        Name: 
+        <input value="<%= gym.name %>" type="text" name="name" autocomplete="off">
+      </label>
+      <label>
+        City: 
+        <input value="<%= gym.city %>" type="text" name="city" autocomplete="off">
+      </label>
+      <label>
+        State: 
+        <input value="<%= gym.state %>" type="text" name="state" autocomplete="off">
+      </label>
+      <label>
+        Category: 
+        <input value="<%= gym.category %>" type="text" name="category" autocomplete="off">
+      </label>
+      <label>
+        Offers group classes?
+        <input <%= gym.groupClasses ? "checked" : "" %> type="checkbox" name="groupClasses">
+      </label>
+      <button type="submit">Add Gym</button>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>

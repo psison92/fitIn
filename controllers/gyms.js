@@ -41,6 +41,43 @@ function show(req, res) {
       gym
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
+}
+
+function edit(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    res.render('gyms/edit', {
+      title: 'Edit Info',
+      gym,
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
+}
+
+function update(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    if (gym.author.equals(req.user.profile._id)) {
+      req.body.groupClasses = !!req.body.groupClasses
+      gym.updateOne(req.body, {new: true})
+      .then(() => {
+        res.redirect(`/gyms/${gym._id}`)
+      })
+    } else {
+      throw new Error ('Not authorized')
+    }
+  }) 
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
 }
 
 export {
@@ -48,4 +85,6 @@ export {
   newGym as new,
   create,
   show,
+  edit,
+  update,
 }
