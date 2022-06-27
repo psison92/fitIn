@@ -3,6 +3,8 @@
 
 <section>  
   <h2>Edit Info</h2>
+  <a href="/gyms/<%= gym._id %> ">Back</a>
+  <div>
     <form action="/gyms/<%= gym._id %>?_method=PUT" method="POST">
       <label>
         Name: 
@@ -24,8 +26,9 @@
         Offers group classes?
         <input <%= gym.groupClasses ? "checked" : "" %> type="checkbox" name="groupClasses">
       </label>
-      <button type="submit">Add Gym</button>
+      <button type="submit">Save changes</button>
     </form>
+  </div>
 </section>
 
 <%- include('../partials/footer') %>

@@ -14,6 +14,37 @@
     <a href="/gyms/<%= gym._id %>/edit">Edit Info</a>
   <% } %>  
   <%# [reviews] %> 
+  <a href="/gyms/<%= gym._id %>/new-review">Write a Review</a>
+  <% if (gym.reviews.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Review</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let total = 0 %> 
+        <% gym.reviews.forEach(review => { %>
+          <% total += review.rating %>
+          <tr>
+            <td><%= review.title %></td>
+            <td><%= review.content %></td>
+            <td><%= review.rating %></td>
+          </tr>
+        <% }) %>
+        <tr>
+          <td colspan="2"></td>
+          <td>
+            <strong><%= (total / gym.reviews.length).toFixed(1) %></strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h3>No Reviews Yet</h3>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>

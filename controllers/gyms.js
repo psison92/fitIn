@@ -80,6 +80,35 @@ function update(req, res) {
   })
 }
 
+function newReview(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    res.render('gyms/new-review', {
+      title: "Write a Review",
+      gym,
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
+}
+
+function createReview(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    gym.reviews.push(req.body)
+    gym.save()
+    .then(() => {
+      res.redirect(`/gyms/${gym._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
+}
+
 export {
   index,
   newGym as new,
@@ -87,4 +116,6 @@ export {
   show,
   edit,
   update,
+  newReview,
+  createReview,
 }
