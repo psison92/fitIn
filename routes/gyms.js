@@ -34,6 +34,9 @@ router.put('/:id', isLoggedIn, gymsCtrl.update)
 // PUT -- localhost:3000/gyms/:id/reviews/:reviewId
 router.put('/:id/reviews', isLoggedIn, gymsCtrl.updateReview)
 
+// DELETE -- localhost:3000/gyms/:id
+router.delete('/:id', isLoggedIn, gymsCtrl.delete)
+
 export {
   router
 }

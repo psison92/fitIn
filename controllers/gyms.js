@@ -137,6 +137,24 @@ function updateReview(req, res) {
   })
 }
 
+function deleteGym(req, res) {
+  Gym.findByIdAndDelete(req.params.id)
+  .then(gym => {
+    if (gym.author.equals(req.user.profile._id)) {
+      gym.delete()
+      .then(() => {
+        res.redirect('/gyms')
+      })
+    } else {
+      throw new Error ('Not authorized')
+    }   
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/gyms')
+  })
+}
+
 export {
   index,
   newGym as new,
@@ -147,5 +165,6 @@ export {
   newReview,
   createReview,
   editReview,
-  updateReview
+  updateReview,
+  deleteGym as delete
 }
