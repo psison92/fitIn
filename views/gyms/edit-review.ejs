@@ -2,25 +2,26 @@
 <%- include('../partials/nav') %>
 
 <section>  
-  <h2>Review</h2>
+  <h1><%= title %></h1>
   <form 
     id="add-review-form"
-    action="/gyms/<%= gym._id %>/reviews"
+    action="/gyms/<%= gym._id %>/reviews?_method=PUT"
     method="POST"
   >
     <label>
       Title: 
-      <input type="text" name="title" autocomplete="off">
+      <input value="<%= review.title %>" type="text" name="title" autocomplete="off">
     </label>
     <label for="content-textarea">Review:</label>
-    <textarea name="content" id="content-textarea"></textarea>
+    <textarea name="content" id="content-textarea"><%= review.content %></textarea>
     <label for="rating-select">Rating:</label>
     <select name="rating" id="rating-select">
+      <option value="<%= review.rating %>" selected></option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5" selected>5</option>
+      <option value="5">5</option>
     </select> 
     <button type="submit">Add Review</button>
   </form>

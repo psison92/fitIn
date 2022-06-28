@@ -14,34 +14,28 @@
     <a href="/gyms/<%= gym._id %>/edit">Edit Info</a>
   <% } %>  
   <%# [reviews] %> 
-  <a href="/gyms/<%= gym._id %>/new-review">Write a Review</a>
+  <h2>Reviews</h2>
+  <a href="/gyms/<%= gym._id %>/reviews/new-review">Write a Review</a>
   <% if (gym.reviews.length) { %>
+    <% gym.reviews.forEach(review => { %>
     <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Review</th>
-          <th>Rating</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% let total = 0 %> 
-        <% gym.reviews.forEach(review => { %>
-          <% total += review.rating %>
-          <tr>
-            <td><%= review.title %></td>
-            <td><%= review.content %></td>
-            <td><%= review.rating %></td>
-          </tr>
-        <% }) %>
-        <tr>
-          <td colspan="2"></td>
-          <td>
-            <strong><%= (total / gym.reviews.length).toFixed(1) %></strong>
-          </td>
-        </tr>
-      </tbody>
+      <tr>
+        <th>Title</th>
+        <td><%= review.title %></td>
+      </tr>
+      <tr>
+        <th>Review</th>
+        <td><%= review.content %></td>
+      </tr>
+      <tr>
+        <th>Rating</th>
+        <td><%= review.rating %></td>
+      </tr>
     </table>
+    <% if (review.author.equals(user?.profile._id)) {%> 
+      <a href="/gyms/<%= gym._id %>/reviews/<%= review._id %>/edit-review">Edit review</a>
+    <% } %> 
+    <% }) %>
   <% } else { %>
     <h3>No Reviews Yet</h3>
   <% } %>

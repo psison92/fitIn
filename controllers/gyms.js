@@ -97,7 +97,9 @@ function newReview(req, res) {
 function createReview(req, res) {
   Gym.findById(req.params.id)
   .then(gym => {
+    req.body.author = req.user.profile._id
     gym.reviews.push(req.body)
+    console.log(req.body)
     gym.save()
     .then(() => {
       res.redirect(`/gyms/${gym._id}`)
@@ -106,6 +108,32 @@ function createReview(req, res) {
   .catch(err => {
     console.log(err)
     res.redirect('/gyms')
+  })
+}
+
+
+function editReview(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    const review = gym.reviews.id(req.params.reviewId)
+    res.render(`gyms/edit-review`, {
+      title: 'Edit Review',
+      gym,
+      review,
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect(`/gyms`)
+  })
+}
+
+// TODO: fix!!!
+function updateReview(req, res) {
+  Gym.findByIdAndUpdate(req.params.id, req.body, {new: true}) 
+  .then(gym => {
+    res.redirect(`/gyms/${gym._id}/reviews`)
+    
   })
 }
 
@@ -118,4 +146,6 @@ export {
   update,
   newReview,
   createReview,
+  editReview,
+  updateReview
 }

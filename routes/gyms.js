@@ -17,7 +17,10 @@ router.get('/:id', gymsCtrl.show)
 router.get('/:id/edit', isLoggedIn, gymsCtrl.edit)
 
 // GET -- localhost:3000/gyms/:id/new-review
-router.get('/:id/new-review', isLoggedIn, gymsCtrl.newReview)
+router.get('/:id/reviews/new-review', isLoggedIn, gymsCtrl.newReview)
+
+// GET -- localhost:3000/gyms/:id/edit-review
+router.get('/:id/reviews/:reviewId/edit-review', isLoggedIn, gymsCtrl.editReview)
 
 // POST -- localhost:3000/gyms
 router.post('/', isLoggedIn, gymsCtrl.create)
@@ -27,6 +30,9 @@ router.post('/:id/reviews', isLoggedIn, gymsCtrl.createReview)
 
 // PUT -- localhost:3000/gyms/:id
 router.put('/:id', isLoggedIn, gymsCtrl.update)
+
+// PUT -- localhost:3000/gyms/:id/reviews/:reviewId
+router.put('/:id/reviews', isLoggedIn, gymsCtrl.updateReview)
 
 export {
   router
