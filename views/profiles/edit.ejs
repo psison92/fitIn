@@ -1,0 +1,25 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <% if (profile.avatar) { %>
+    <div>
+      <img 
+        class="profile-avatar"
+        src="<%= profile.avatar %>" 
+        alt="<%= profile.name %> avatar"
+      >
+    </div>
+  <% } %>
+  <h1><%= title %></h1> 
+  <form action="">
+  <ul>
+    <li>City: <input value="<%= profile.city %>" type="text" name="city"></li>
+    <li>State: <input value="<%= profile.state %>" type="text" name="state"></li>
+    <li>Interests: <input value="<%= profile.interests %>" type="text" name="interests"></li>
+  </ul>
+  <button type="submit">Save changes</button>
+</form>
+</main>
+
+<%- include('../partials/footer') %>

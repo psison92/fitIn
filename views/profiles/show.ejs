@@ -12,7 +12,7 @@
     </div>
   <% } %>
   <h1><%= isSelf ? "You" : profile.name %></h1>
-  <% if isSelf { %>
+  <% if (isSelf) { %>
     <a href="/profiles/<%= profile._id %>/edit">Edit profile</a>
   <% } %> 
   <ul>
