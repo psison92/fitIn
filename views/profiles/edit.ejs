@@ -12,14 +12,14 @@
     </div>
   <% } %>
   <h1><%= title %></h1> 
-  <form action="">
-  <ul>
-    <li>City: <input value="<%= profile.city %>" type="text" name="city"></li>
-    <li>State: <input value="<%= profile.state %>" type="text" name="state"></li>
-    <li>Interests: <input value="<%= profile.interests %>" type="text" name="interests"></li>
-  </ul>
-  <button type="submit">Save changes</button>
-</form>
+  <form action="/profiles/<%= profile._id %>?_method=PUT" method="POST">
+    <ul>
+      <li>City: <input value="<%= profile.city %>" type="text" name="city"></li>
+      <li>State: <input value="<%= profile.state %>" type="text" name="state"></li>
+      <li>Interests: <input value="<%= profile.interests %>" type="text" name="interests"></li>
+    </ul>
+    <button type="submit">Save changes</button>
+  </form>
 </main>
 
 <%- include('../partials/footer') %>

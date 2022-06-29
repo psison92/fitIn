@@ -13,6 +13,9 @@ router.get('/:id', isLoggedIn, profilesCtrl.show)
 // GET -- localhost:3000/profiles/:id/edit
 router.get('/:id/edit', isLoggedIn, profilesCtrl.edit)
 
+// PUT -- localhost:3000/profiles/:id
+router.put('/:id', isLoggedIn, profilesCtrl.update)
+
 export {
   router
 }
