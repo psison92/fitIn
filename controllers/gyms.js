@@ -21,7 +21,7 @@ function newGym(req, res) {
 }
 
 function create(req, res) {
-  req.body.author = req.user.profile._id
+  req.body.creator = req.user.profile._id
   req.body.groupClasses = !!req.body.groupClasses
   Gym.create(req.body)
   .then(gym => {
@@ -64,7 +64,7 @@ function edit(req, res) {
 function update(req, res) {
   Gym.findById(req.params.id)
   .then(gym => {
-    if (gym.author.equals(req.user.profile._id)) {
+    if (gym.creator.equals(req.user.profile._id)) {
       req.body.groupClasses = !!req.body.groupClasses
       gym.updateOne(req.body, {new: true})
       .then(() => {

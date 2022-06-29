@@ -10,7 +10,7 @@
     <li>Category: <%= gym.category %> </li>
     <li>Group classes: <%= gym.groupClasses ? 'Yes' : 'No' %></li>
   </ul>
-  <% if (gym.author.equals(user?.profile._id)) { %>
+  <% if (gym.creator.equals(user?.profile._id)) { %>
     <a href="/gyms/<%= gym._id %>/edit">Edit Info</a>
     <form action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
       <button class="btn" type="submit">Delete</button>
@@ -21,7 +21,7 @@
   <a href="/gyms/<%= gym._id %>/reviews/new-review">Write a Review</a>
   <% if (gym.reviews.length) { %>
     <% gym.reviews.forEach(review => { %>
-    <table>
+      <table>
       <tr>
         <th>Title</th>
         <td><%= review.title %></td>

@@ -18,7 +18,7 @@ const gymSchema = new Schema({
   groupClasses: Boolean,
   category: String,
   reviews: [reviewSchema],
-  author: {type: Schema.Types.ObjectId, ref: "Profile"},
+  creator: {type: Schema.Types.ObjectId, ref: "Profile"},
 }, {
   timestamps: true
 })
