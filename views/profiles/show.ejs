@@ -1,0 +1,25 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <% if (profile.avatar) { %>
+    <div>
+      <img 
+        class="profile-avatar"
+        src="<%= profile.avatar %>" 
+        alt="<%= profile.name %> avatar"
+      >
+    </div>
+  <% } %>
+  <h1><%= isSelf ? "You" : profile.name %></h1>
+  <% if isSelf { %>
+    <a href="/profiles/<%= profile._id %>/edit">Edit profile</a>
+  <% } %> 
+  <ul>
+    <li>City: <%= profile.city %></li>
+    <li>State: <%= profile.state %></li>
+    <li>Interests: <%= profile.interests %></li>
+  </ul>
+</main>
+
+<%- include('../partials/footer') %>
