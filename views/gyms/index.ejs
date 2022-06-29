@@ -3,7 +3,12 @@
 
 <section>
   <h1>Gyms</h1>
-  <a href="/gyms/new"><h2>Add a Gym</h2></a>
+  <h2>Search Gyms</h2>
+  <form action="gyms/search" method="POST">
+    <input type="text" name="search" placeholder="Enter a city or ZIP">
+    <button type="submit">Search</button>
+  </form>
+  <a href="/gyms/new"><h3>Add a Gym</h3></a>
 	<ul>
   <% gyms.forEach(gym => { %>
     <li>Name: <%= gym.name %> </li>

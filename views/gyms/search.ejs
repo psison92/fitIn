@@ -1,0 +1,15 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <h1>Search Results</h1>
+    <% if (search) { %>
+      <h2>Results for <%= search %> </h2>
+    <% } %>
+    <% results.forEach(result => { %>
+      <h2><%= result.name %></h2>
+      <img src="<%= result.image_url %>" alt="">
+    <% }) %>
+</main>
+
+<%- include('../partials/footer') %>

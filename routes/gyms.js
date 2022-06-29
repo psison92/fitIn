@@ -25,6 +25,9 @@ router.get('/:id/reviews/:reviewId/edit-review', isLoggedIn, gymsCtrl.editReview
 // POST -- localhost:3000/gyms
 router.post('/', isLoggedIn, gymsCtrl.create)
 
+// POST -- localhost:3000/gyms/search
+router.post('/search', gymsCtrl.gymSearch)
+
 // POST -- localhost:3000/gyms/:id/reviews
 router.post('/:id/reviews', isLoggedIn, gymsCtrl.createReview)
 
