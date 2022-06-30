@@ -23,11 +23,18 @@ function create(req, res) {
 
 function show(req, res) {
   Gym.findById(req.params.id)
-  .populate('reviews')
+  .populate('recommendedBy')
+  .populate({
+    path: 'reviews',
+    populate: {
+      path: 'author'
+    }
+  })
   .then(gym => {
     res.render('gyms/show', {
       title: `${gym.gymName}`,
-      gym
+      gym,
+      userHasReviewed: gym?.reviews.some(review => review.author?.equals(req.user.profile._id))
     })
   })
 }

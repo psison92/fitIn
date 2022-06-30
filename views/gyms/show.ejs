@@ -1,0 +1,48 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <img src="<%= gym.image %>" alt="">
+  <h1><%= title %> </h1>
+  <h3><%= gym.city %>, <%= gym.state %></h3>
+  <a href="<%= gym.yelpUrl %>"><h3>Yelp Page</h3></a>
+  <h3>Recommended by: <%= gym.recommendedBy.name %></h3>
+  <h2>Reviews</h2>
+  <% if (!userHasReviewed) { %>
+    <form 
+      id="add-review-form"
+      action="/reviews/<%= gym._id %>"
+      method="POST"
+    >
+      <label>
+        Title: 
+        <input type="text" name="title" autocomplete="off">
+      </label>
+      <label for="content-textarea">Review:</label>
+      <textarea name="content" id="content-textarea"></textarea>
+      <label for="rating-select">Rating:</label>
+      <select name="rating" id="rating-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5" selected>5</option>
+      </select> 
+      <button type="submit">Add Review</button>
+    </form>
+  <% } %>
+  <% if (gym.reviews.length) { %> 
+    <% gym.reviews.forEach(review => { %>
+      <ul>
+        <li>Reviewer: <%= review.author.name %></li>
+        <li>Title: <%= review.title %></li>
+        <li>Content: <%= review.content %></li>
+        <li>Rating: <%= review.rating %></li>
+      </ul>
+    <% }) %>
+  <% } else { %>
+    <h3>No reviews yet</h3>
+  <% } %> 
+</main>
+
+<%- include('../partials/footer') %>

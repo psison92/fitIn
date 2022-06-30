@@ -8,7 +8,7 @@ const router = Router()
 router.get('/', gymsCtrl.index)
 
 // GET -- localhost:3000/gyms/:id
-router.get('/', isLoggedIn, gymsCtrl.show)
+router.get('/:id', isLoggedIn, gymsCtrl.show)
 
 // POST -- localhost:3000/gyms
 router.post('/', isLoggedIn, gymsCtrl.create)
