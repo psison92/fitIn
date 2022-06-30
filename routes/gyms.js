@@ -16,6 +16,8 @@ router.post('/', isLoggedIn, gymsCtrl.create)
 // POST -- localhost:3000/gyms/search
 router.post('/search', gymsCtrl.gymSearch)
 
+// DELETE -- localhost:3000/gyms/:id/reviews/:reviewId
+router.delete('/:id/reviews/:reviewId', isLoggedIn, gymsCtrl.deleteReview)
 
 export {
   router

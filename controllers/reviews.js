@@ -1,5 +1,5 @@
 import { Review } from "../models/review.js"
-import { Profile } from "../models/profile.js"
+import { Gym } from "../models/gym.js"
 
 function index(req, res) {
   Review.find({})
@@ -23,14 +23,20 @@ function newReview(req, res) {
 
 function create(req, res) {
   req.body.author = req.user.profile._id
-  req.body.recommend = !!req.body.recommend
   Review.create(req.body)
   .then(review => {
-    res.redirect('/reviews')
+    Gym.findById(req.params.id)
+    .then(gym => {
+      gym.reviews.push(review._id)
+      gym.save()
+      .then(gym => {
+        res.redirect(`/gyms/${gym._id}`)
+      })
+    })
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/reviews')
+    res.redirect('/gyms')
   })
 }
 
@@ -77,7 +83,7 @@ function update(req, res) {
   }) 
   .catch(err => {
     console.log(err)
-    res.redirect('/reviews')
+    res.redirect('/gyms')
   })
 }
 /*

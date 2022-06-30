@@ -7,8 +7,8 @@
   <h3><%= gym.city %>, <%= gym.state %></h3>
   <a href="<%= gym.yelpUrl %>"><h3>Yelp Page</h3></a>
   <h3>Recommended by: <%= gym.recommendedBy.name %></h3>
-  <h2>Reviews</h2>
   <% if (!userHasReviewed) { %>
+    <h2>Write a Review!</h2>
     <form 
       id="add-review-form"
       action="/reviews/<%= gym._id %>"
@@ -32,12 +32,20 @@
     </form>
   <% } %>
   <% if (gym.reviews.length) { %> 
+    <h2>Reviews</h2>
     <% gym.reviews.forEach(review => { %>
       <ul>
         <li>Reviewer: <%= review.author.name %></li>
         <li>Title: <%= review.title %></li>
         <li>Content: <%= review.content %></li>
         <li>Rating: <%= review.rating %></li>
+        <% if (review.author.equals(user.profile._id)) { %>
+          <li>
+            <form action="/gyms/<%= gym._id %>/reviews/<%= review._id %>/?_method=DELETE" method="POST">
+              <button>Delete</button>
+            </form>
+          </li>
+        <% } %>
       </ul>
     <% }) %>
   <% } else { %>

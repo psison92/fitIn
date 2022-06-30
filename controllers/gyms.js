@@ -16,8 +16,7 @@ function create(req, res) {
   req.body.recommendedBy = req.user.profile._id
   Gym.create(req.body)
   .then(gym => {
-    console.log(gym)
-    res.redirect('/gyms')
+    res.redirect(`/gyms/${gym._id}`)
   })
 }
 
@@ -39,8 +38,19 @@ function show(req, res) {
   })
 }
 
+function deleteReview(req, res) {
+  Gym.findById(req.params.id)
+  .then(gym => {
+    gym.reviews.remove(req.params.reviewId)
+    gym.save()
+    .then(() => {
+      res.redirect(`/gyms/${gym._id}`)
+    })
+  })
+}
+
 function gymSearch(req, res) {
-  axios.get(`https://api.yelp.com/v3/businesses/search?categories=gyms&limit=20&location=${req.body.search}`, {
+  axios.get(`https://api.yelp.com/v3/businesses/search?categories=gyms&limit=30&location=${req.body.search}`, {
     headers: {
       'Authorization': `Bearer ${process.env.API_KEY}`
     }
@@ -54,9 +64,11 @@ function gymSearch(req, res) {
   })
 }
 
+
 export {
   index,
   gymSearch,
   create,
   show,
+  deleteReview
 }

@@ -1,3 +1,7 @@
+nav {
+  position: sticky;
+}
+
 .siwg {
   background: url(/images/auth/google/siwg_light_normal.png);
   cursor: pointer;
