@@ -1,23 +1,13 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<section>
-  <h1>Gyms</h1>
-  <h2>Search Gyms</h2>
-  <form action="gyms/search" method="POST">
+<section>  
+  <h1><%= title %> </h1>
+  <h2>Find a gym near you</h2>
+  <form action="/gyms/search" method="POST">
     <input type="text" name="search" placeholder="Enter a city or ZIP">
     <button type="submit">Search</button>
   </form>
-  <a href="/gyms/new"><h3>Add a Gym</h3></a>
-	<ul>
-  <% gyms.forEach(gym => { %>
-    <li>Name: <%= gym.name %> </li>
-    <li>City: <%= gym.city %> </li>
-    <li>State: <%= gym.state %> </li>
-    <li><a href="/gyms/<%= gym._id %>">See details</a></li>
-    <%# [reviews] %> 
-  <% }) %>
-  </ul>
 </section>
 
 <%- include('../partials/footer') %>

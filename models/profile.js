@@ -1,22 +1,13 @@
 import mongoose from 'mongoose'
 
-const currentGymSchema = new mongoose.Schema({
-  gymName: String,
-  image: String,
-  yelpUrl: String,
-  city: String,
-  state: String,
-} , {
-  timestamps: true
-})
+const Schema = mongoose.Schema
 
-const profileSchema = new mongoose.Schema({
+const profileSchema = new Schema({
   name: String,
   avatar: String,
   interests: String,
   city: String,
   state: String,
-  currentGym: [currentGymSchema]
 }, {
   timestamps: true
 })

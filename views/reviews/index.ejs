@@ -1,0 +1,35 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1><%= title %> </h1>
+  <% if (reviews.length) { %>
+    <% reviews.forEach(review => { %>
+      <table>
+      <tr>
+        <th>Title</th>
+        <td><%= review.title %></td>
+      </tr>
+      <tr>
+        <th>Review</th>
+        <td><%= review.content %></td>
+      </tr>
+      <tr>
+        <th>Rating</th>
+        <td><%= review.rating %></td>
+      </tr>
+      <tr>
+        <th>Recommend?</th>
+        <td><%= review.recommend ? "Yes" : "No" %></td>
+      </tr>
+    </table>
+    <% if (review.author.equals(user?.profile._id)) {%> 
+      <a href="">Edit</a>
+    <% } %> 
+    <% }) %>
+  <% } else { %>
+    <h3>No Reviews Yet</h3>
+  <% } %>
+</section>
+
+<%- include('../partials/footer') %>
