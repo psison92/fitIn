@@ -4,6 +4,7 @@ import axios from "axios"
 
 function index(req, res) {
   Gym.find({})
+  .populate('recommendedBy')
   .then(gyms => {
     res.render('gyms/index', {
       title: "Gyms",

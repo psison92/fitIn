@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: gray;
+  background-color: #dcdcdc;
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -24,6 +24,8 @@ nav {
   font-size: 16px;
   display: flex;
   justify-content: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 main {
@@ -38,7 +40,7 @@ h1 {
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 32px;
 }
 
 h3 {
@@ -62,7 +64,7 @@ section {
 }
 
 a {
-  color: #00B7FF;
+  color: whitesmoke;
 }
 
 pre {
@@ -70,12 +72,17 @@ pre {
 }
 
 nav > a {
-  margin: 10px 30px;
+  margin: 0px 30px;
   text-decoration: none;
   font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+}
+
+#profile-avatar {
+  height: 48px;
 }
 
 .btn {

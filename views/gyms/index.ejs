@@ -3,21 +3,21 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <section>  
-    <h1><%= title %> </h1>
-    <h2>Find a gym near you</h2>
+  <section> 
+    <h4>Find a gym near you</h4>
     <form action="/gyms/search" method="POST">
-      <input type="text" name="search" placeholder="Enter a city or ZIP" autocomplete="off">
+      <input type="text" name="search" placeholder="Enter a location" autocomplete="off">
       <button type="submit">Search</button>
     </form>
   </section>
   <section>
-    <h2>Recommendations</h2>
+    <h2>Recommended</h2>
     <div class="cardContainer">
       <% gyms.forEach(gym => { %>
         <a class="text-decoration-none" href="/gyms/<%= gym._id %>">
-          <div class="card">
-            <img src="<%= gym.image %>" alt="">
+          <div class="card bg-light border border-1 shadow p-3">
+              <p><strong><%= gym.recommendedBy.name %></strong> likes</p>
+            <img src="<%= gym.image %>" class="img-fluid" alt="">
               <div class="card-body">
                 <h1 class="card-title"><%= gym.gymName %></h1>
               </div>
