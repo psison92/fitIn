@@ -3,13 +3,13 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <section> 
-    <h4>Find a gym near you</h4>
-    <form action="/gyms/search" method="POST">
-      <input type="text" name="search" placeholder="Enter a location" autocomplete="off">
-      <button type="submit">Search</button>
-    </form>
-  </section>
+
+  <form class="mt-4 w-25" action="/gyms/search" method="POST">
+        <h5>Find a gym near you</h5>
+        <input class="form-control shadow" type="text" name="search" placeholder="Enter a location" autocomplete="off">
+        <button class="btn btn-secondary shadow" type="submit">Search</button>
+      </form> 
+  
   <section>
     <h2>Recommended</h2>
     <div class="cardContainer">

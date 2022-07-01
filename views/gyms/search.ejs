@@ -1,4 +1,5 @@
 <%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/gyms/search.css">
 <%- include('../partials/nav') %>
 
 <main>
@@ -6,18 +7,25 @@
     <% if (search) { %>
       <h2>Results for <%= search %> </h2>
     <% } %>
+    <div class="cardContainer">
     <% results.forEach(result => { %>
-      <h2><%= result.name %></h2>
-      <img src="<%= result.image_url %>" alt="">
+      <div class="card bg-light border-dark border border-1 shadow p-3">
+        <img src="<%= result.image_url %>" class="card-img-top" alt="<%= result.name %> picture">
+        <div class="card-body flex-column">
+          <h5 class="card-title"><%= result.name %></h5>
+          <p class="card-text"><%= result.location.city %>, <%= result.location.state %></p>
       <form action="/gyms" method="POST">
         <input hidden name="gymName" value="<%= result.name %>" type="text">
         <input hidden name="image" value="<%= result.image_url %>" type="text">
         <input hidden name="city" value="<%= result.location.city %>" type="text">
         <input hidden name="state" value="<%= result.location.state %>" type="text">
         <input hidden name="yelpUrl" value="<%= result.url %>" type="text">
-        <button type="submit">Recommend!</button>
+        <button class="btn btn-primary border border-1 border-secondary shadow" type="submit">Recommend</button>
       </form>
+    </div>
+    </div>
     <% }) %>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>

@@ -6,7 +6,9 @@
     <img class="gym-img" src="<%= gym.image %>" alt="">
     <h2><%= title %> </h2>
     <h4><%= gym.city %>, <%= gym.state %></h4>
-    <a href="<%= gym.yelpUrl %>"><h3>Yelp Page</h3></a>
+    <a href="<%= gym.yelpUrl %>">
+      <img src="/images/yelp-logo-link.png" alt="Yelp link <%= gym.yelpUrl %>">
+    </a>
   </div>
   <% if (!userHasReviewed) { %>
     <h3>Write a Review</h3>
