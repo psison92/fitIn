@@ -15,8 +15,10 @@ FitIn is a social network for gym enthusiasts. Users can search for gyms based o
 - Mongoose
 - Express
 - Node.js
-- Yelp Fusion API
+- Bootstrap
 - Heroku
+- Yelp Fusion API
+
 
 ## Favicon
 [Freepik - Flaticon](https://www.flaticon.com/free-icons/gym)
