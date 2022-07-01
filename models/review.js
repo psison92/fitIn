@@ -7,7 +7,6 @@ const reviewSchema = mongoose.Schema({
   title: String,
   content: String,
   rating: {type: Number, min: 1, max: 5, default: 5},
-  recommend: Boolean,
 }, {
   timestamps: true
 })

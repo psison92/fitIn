@@ -6,7 +6,7 @@
   <div class="cardContainer">
     <% profiles.forEach(profile => { %>
       <a class="text-decoration-none" href="/profiles/<%= profile._id %>">
-        <div class="card">
+        <div class="card bg-light border border-1 border-dark shadow p-3">
           <% if (profile.avatar) { %>
             <img 
               src="<%= profile.avatar %>" 

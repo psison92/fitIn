@@ -2,52 +2,69 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <img src="<%= gym.image %>" alt="">
-  <h1><%= title %> </h1>
-  <h3><%= gym.city %>, <%= gym.state %></h3>
-  <a href="<%= gym.yelpUrl %>"><h3>Yelp Page</h3></a>
-  <h3>Recommended by: <%= gym.recommendedBy.name %></h3>
+  <div class="d-flex mb-3 flex-column">
+    <img class="gym-img" src="<%= gym.image %>" alt="">
+    <h2><%= title %> </h2>
+    <h4><%= gym.city %>, <%= gym.state %></h4>
+    <a href="<%= gym.yelpUrl %>"><h3>Yelp Page</h3></a>
+  </div>
   <% if (!userHasReviewed) { %>
-    <h2>Write a Review!</h2>
+    <h3>Write a Review</h3>
     <form 
+      class="border border-2 rounded-2 bg-light shadow w-25 p-3"
       id="add-review-form"
       action="/reviews/<%= gym._id %>"
       method="POST"
     >
-      <label>
-        Title: 
-        <input type="text" name="title" autocomplete="off">
-      </label>
-      <label for="content-textarea">Review:</label>
-      <textarea name="content" id="content-textarea"></textarea>
-      <label for="rating-select">Rating:</label>
-      <select name="rating" id="rating-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5" selected>5</option>
-      </select> 
-      <button type="submit">Add Review</button>
+      <div class="mb-3">
+        <label class="form-label">Title:</label>
+        <input class="form-control" type="text" name="title" autocomplete="off">  
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="content-textarea">Review:</label>
+        <textarea class="form-control" name="content" id="content-textarea"></textarea>
+      </div>
+      <div class="mb-3"></div>
+        <label class="form-label" for="rating-select">Rating:</label>
+        <select class="form-select" name="rating" id="rating-select">
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5" selected>⭐⭐⭐⭐⭐</option>
+        </select> 
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   <% } %>
   <% if (gym.reviews.length) { %> 
     <h2>Reviews</h2>
-    <% gym.reviews.forEach(review => { %>
-      <ul>
-        <li>Reviewer: <%= review.author.name %></li>
-        <li>Title: <%= review.title %></li>
-        <li>Content: <%= review.content %></li>
-        <li>Rating: <%= review.rating %></li>
-        <% if (review.author.equals(user.profile._id)) { %>
-          <li>
-            <form action="/gyms/<%= gym._id %>/reviews/<%= review._id %>/?_method=DELETE" method="POST">
-              <button>Delete</button>
-            </form>
-          </li>
-        <% } %>
-      </ul>
-    <% }) %>
+    <div class="cardContainer">
+      <% gym.reviews.forEach(review => { %>
+        <div class="review-card card mb-3 text-start" style="max-width: 500px;">
+          <div class="row g-0">
+            <div class="col-md-3">
+              <img src="<%= review.author.avatar %>" class="rounded-circle avatar-img float-end mt-2" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><strong><%= review.author.name %></strong></h5>
+                <p class="card-text"><%= review.title %></p>
+                <p class="card-text"><small class="text-muted"><%= review.content %></small></p>
+                <p class="card-text"><small class="text-muted"><%= "⭐".repeat(review.rating) %></small></p>
+                <% if (review.author.equals(user.profile._id)) { %>
+                  <p class="card-text">
+                    <form action="/gyms/<%= gym._id %>/reviews/<%= review._id %>/?_method=DELETE" method="POST">
+                      <button>Delete</button>
+                    </form>
+                  </p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
   <% } else { %>
     <h3>No reviews yet</h3>
   <% } %> 
