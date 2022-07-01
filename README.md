@@ -1,5 +1,5 @@
 # FitIn
-![Gyms page](/images/fit-in-screenshot.jpg)
+![Gyms page](/public/images/fit-in-screenshot.jpg)
 FitIn is a social network for gym enthusiasts. Users can search for gyms based on location, add their favorite gyms to their recommendations, and create reviews on gyms.
 
 ## Getting Started
